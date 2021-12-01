@@ -1,7 +1,11 @@
 package com.baselcode.wrokshoplibraryspring.models;
 
+
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 public class Book {
@@ -13,15 +17,22 @@ public class Book {
     private String title;
     private int maxLoanDays;
 
+    @ManyToMany(
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            fetch = FetchType.LAZY,
+            mappedBy = "writtenBooks"
+    )
+    private Set<Author> authors;
+
+    public Book() {
+    }
+
 
     public Book(int bookId, String isbn, String title, int maxLoanDays) {
         this.bookId = bookId;
         this.isbn = isbn;
         this.title = title;
         this.maxLoanDays = maxLoanDays;
-    }
-
-    public Book() {
     }
 
     public int getBookId() {
@@ -54,5 +65,23 @@ public class Book {
 
     public void setMaxLoanDays(int maxLoanDays) {
         this.maxLoanDays = maxLoanDays;
+    }
+
+    public Set<Author> getAuthors() {
+        if(authors == null) return new HashSet<>();
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        if(authors == null) authors = new HashSet<>();
+        if(authors.isEmpty()){
+            if(this.authors != null){
+                this.authors.forEach(a -> a.getWrittenBooks().remove(this));
+            }
+        }else {
+            authors.forEach(a -> a.getWrittenBooks().add(this));
+        }
+
+        this.authors = authors;
     }
 }

@@ -1,13 +1,13 @@
 package com.baselcode.wrokshoplibraryspring.data;
 
-import com.baselcode.wrokshoplibraryspring.data.interfaces.BookDAO;
+import com.baselcode.wrokshoplibraryspring.data.interfaces.DAOGenericeCRUD;
 import com.baselcode.wrokshoplibraryspring.models.Book;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;
 
-public class BookDAORepository implements BookDAO {
+public class BookDAORepository implements DAOGenericeCRUD<Book> {
 
     private final EntityManager _entityManager;
 
