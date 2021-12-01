@@ -77,4 +77,20 @@ public class Author {
 
         this.writtenBooks = writtenBooks;
     }
+
+    public void addWrittenBook(Book book){
+        if(book == null) throw new IllegalArgumentException("book was null!!");
+        if(writtenBooks == null) writtenBooks = new HashSet<>();
+
+        writtenBooks.add(book);
+        book.getAuthors().add(this);
+    }
+
+    public void removeWrittenBook(Book book){
+        if(book == null) throw new IllegalArgumentException("book was null");
+        if(!writtenBooks.contains(book)) throw new RuntimeException("book is not found");
+
+        writtenBooks.remove(book);
+        book.getAuthors().remove(this);
+    }
 }

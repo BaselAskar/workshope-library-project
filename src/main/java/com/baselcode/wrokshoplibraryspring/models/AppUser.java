@@ -102,4 +102,23 @@ public class AppUser {
         }
         this.loans = loans;
     }
+
+    public void addBookLoan(BookLoan bookLoan){
+        if (bookLoan == null) throw new IllegalArgumentException("bookLoan is null!!");
+        if (bookLoan.getBook() == null) throw new IllegalArgumentException("there is not book to loan");
+
+        bookLoan.getBook().setAvailable(false);
+
+        loans.add(bookLoan);
+        bookLoan.setBorrower(this);
+    }
+
+    public void removeBookLoan(BookLoan bookLoan){
+        if (bookLoan == null) throw new IllegalArgumentException("bookLoan is null!!");
+        if (!loans.contains(bookLoan)) throw new IllegalArgumentException("bookLoan is not found!!");
+
+        bookLoan.getBook().setAvailable(true);
+
+        loans.remove(bookLoan);
+    }
 }

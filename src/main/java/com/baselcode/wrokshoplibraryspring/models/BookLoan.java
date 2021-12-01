@@ -66,8 +66,9 @@ public class BookLoan {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public void setDueDate() {
+        int dueDays = this.book.getMaxLoanDays();
+        this.dueDate = this.loanDate.plusDays(dueDays);
     }
 
     public boolean isReturned() {
@@ -83,6 +84,8 @@ public class BookLoan {
     }
 
     public void setBorrower(AppUser borrower) {
+        if(borrower == null) throw new IllegalArgumentException("borrower was null!!");
+
         this.borrower = borrower;
     }
 

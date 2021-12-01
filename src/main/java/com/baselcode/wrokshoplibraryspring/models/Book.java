@@ -16,6 +16,7 @@ public class Book {
     private String isbn;
     private String title;
     private int maxLoanDays;
+    private boolean available = true;
 
     @ManyToMany(
             cascade = {CascadeType.DETACH, CascadeType.REFRESH},
@@ -67,6 +68,14 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     public Set<Author> getAuthors() {
         if(authors == null) return new HashSet<>();
         return authors;
@@ -83,5 +92,13 @@ public class Book {
         }
 
         this.authors = authors;
+    }
+
+    public void addAuthor(Author author){
+        if (author == null) throw new IllegalArgumentException("author is null!!");
+        if (!authors.contains(author)) throw new RuntimeException("author is not found");
+
+        authors.remove(author);
+        author.getWrittenBooks().remove(this);
     }
 }
