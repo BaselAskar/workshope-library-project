@@ -1,7 +1,5 @@
 package com.baselcode.wrokshoplibraryspring.models;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,7 +8,7 @@ public class Details {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int detailsId;
 
     @Column(unique = true)
     private String email;
@@ -19,8 +17,8 @@ public class Details {
 
     private LocalDate birthDate;
 
-    public Details(int id, String email, String name, LocalDate birthDate) {
-        this.id = id;
+    public Details(int detailsId, String email, String name, LocalDate birthDate) {
+        this.detailsId = detailsId;
         this.email = email;
         this.name = name;
         this.birthDate = birthDate;
@@ -29,12 +27,12 @@ public class Details {
     public Details() {
     }
 
-    public int getId() {
-        return id;
+    public int getDetailsId() {
+        return detailsId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDetailsId(int detailsId) {
+        this.detailsId = detailsId;
     }
 
     public String getEmail() {
