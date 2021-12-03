@@ -57,4 +57,6 @@ public class AppUserDAORepository implements AppUserDAO {
 
         _entityManager.remove(findById(id));
     }
+
+
 }

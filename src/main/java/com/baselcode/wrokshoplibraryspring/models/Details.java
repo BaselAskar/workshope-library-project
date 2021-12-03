@@ -24,6 +24,12 @@ public class Details {
         this.birthDate = birthDate;
     }
 
+    public Details(String email, String name, LocalDate birthDate) {
+        this.email = email;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
     public Details() {
     }
 
