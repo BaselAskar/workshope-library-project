@@ -2,11 +2,13 @@ package com.baselcode.wrokshoplibraryspring.data;
 
 import com.baselcode.wrokshoplibraryspring.data.interfaces.AuthorDAO;
 import com.baselcode.wrokshoplibraryspring.models.Author;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.*;
 
+@Repository
 public class AuthorDAORepository implements AuthorDAO {
 
     private final EntityManager _entityManager;

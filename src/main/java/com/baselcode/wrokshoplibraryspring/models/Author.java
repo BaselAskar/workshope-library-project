@@ -27,6 +27,11 @@ public class Author {
     )
     private Set<Book> writtenBooks;
 
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Author(int authorId, String firstName, String lastName) {
         this.authorId = authorId;
         this.firstName = firstName;
